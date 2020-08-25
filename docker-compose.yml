@@ -1,0 +1,11 @@
+version: '4'
+services:
+  api:
+    image: node
+    stdin_open: true
+    tty: true
+    ports:
+     - "8080:3000"
+    volumes:
+     - .:/addressbook
+    working_dir: /addressbook
