@@ -1,4 +1,4 @@
-version: '4'
+version: '3'
 services:
   api:
     image: node
@@ -9,3 +9,6 @@ services:
     volumes:
      - .:/addressbook
     working_dir: /addressbook
+
+  db:
+    image: mongo
