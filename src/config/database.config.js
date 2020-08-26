@@ -1,7 +1,14 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
-url = 'mongodb://db:27017/addressbook';
+var dbName;
+if(process.env.NODE_ENV === 'test') {
+  dbName = 'test-addresbook';
+} else {
+  dbName = 'addressbook';
+}
+
+const url = 'mongodb://db:27017/' + dbName;
 
 // Connect to db and export connection
 module.exports = mongoose.connect(url, {

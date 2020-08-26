@@ -4,7 +4,7 @@
   "description": "Simple REST API implementing the functionality of an address book",
   "main": "src/index.js",
   "scripts": {
-    "test": "jest"
+    "test": "NODE_ENV=test jest"
   },
   "author": "",
   "license": "ISC",
