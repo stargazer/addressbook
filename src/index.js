@@ -1,6 +1,6 @@
 // Initiate DB connection.
 mongoose = require('mongoose');
-dbUrl = require('./config/database.config.js');
+dbUrl = 'mongodb://db:27017/addressbook';
 
 mongoose.connect(dbUrl, {
   useNewUrlParser: true
