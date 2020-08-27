@@ -4,7 +4,7 @@
   "description": "Simple REST API implementing the functionality of an address book",
   "main": "src/index.js",
   "scripts": {
-    "test": "NODE_ENV=test jest"
+    "start": "node ./src/index.js"
   },
   "author": "",
   "license": "ISC",
@@ -13,14 +13,5 @@
     "express": "^4.17.1",
     "mongoose": "^5.10.0"
   },
-  "devDependencies": {
-    "jest": "^26.4.2",
-    "supertest": "^4.0.2"
-  },
-  "jest": {
-    "testEnvironment": "node",
-    "coveragePathIgnorePatterns": [
-      "/node_modules/"
-    ]
-  }
+  "devDependencies": {}
 }
