@@ -1,4 +1,5 @@
 const Contact = require('../models/contact.model.js');
+const List = require('../models/list.model.js');
 
 async function create(req, res) {
   // Validate
@@ -52,7 +53,7 @@ async function findOne(req, res) {
       message: err.message
     });
   }
-};
+}
 
 async function updateOne(req, res) {
   // Validate
@@ -97,10 +98,25 @@ async function deleteOne(req, res) {
   }
 }
 
+async function findAllByList(req, res) {
+  try {
+    list = List.findById(req.params.listId);
+    contact_ids = list.contacts;
+    contacts = await Contact.findById(contact_ids)
+    res.send(contacts);
+  } catch(err) {
+    res.status(500).send({
+      message: err.message
+    });
+  }
+}
+
 module.exports = {
   create,
   findAll,
   findOne,
   updateOne,
   deleteOne,
+
+  findAllByList,
 }

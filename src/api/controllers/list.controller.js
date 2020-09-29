@@ -1,4 +1,5 @@
 const List = require('../models/list.model.js');
+const Contact = require('../models/contact.model.js');
 
 async function create(req, res) {
 
@@ -43,9 +44,11 @@ async function findOne(req, res) {
         message: "List with id " + req.params.listId + " not found"
       });
     }
-    res.status(500).send({
-      message: err.message
-    })
+    else {
+      res.status(500).send({
+        message: err.message
+      })
+    }
   }
 }
 
@@ -91,10 +94,42 @@ async function deleteOne(req, res) {
   }
 }
 
+async function addContactToList(req, res) {
+  try {
+    contact = await Contact.findById(req.params.contactId);
+    list = await List.findById(req.params.listId);
+    list.contacts.addToSet(contact);
+    list.save();
+    res.send(list);
+  } catch(err) {
+    res.status(500).send({
+      message: err.message
+    });
+  }
+}
+
+
+async function removeContactFromList(req, res) {
+  try {
+    contact = await Contact.findById(req.params.contactId);
+    list = await List.findById(req.params.listId);
+    list.contacts.pull(contact);
+    list.save();
+    res.send(list);
+  } catch(err) {
+    res.status(500).send({
+      message: err.message
+    });
+  }
+}
+
 module.exports = {
   create,
   findAll,
   findOne,
   updateOne,
   deleteOne,
+
+  addContactToList,
+  removeContactFromList,
 }
