@@ -1,7 +1,10 @@
 const express = require('express');
+
 const bodyParser = require('body-parser');
+const http = require('http');
 
 const app = express();
+const server = http.createServer(app);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -9,4 +12,8 @@ app.use(bodyParser.json());
 require('../api/routes/contact.routes.js')(app);
 require('../api/routes/list.routes.js')(app);
 
-module.exports = app;
+server.listen(3000, () => {
+  console.log("Server listening on port 3000");
+});
+
+module.exports = server;
