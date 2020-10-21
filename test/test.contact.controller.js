@@ -6,7 +6,7 @@ const contactController = require("../src/api/controllers/contact.controller.js"
 const Contact = require('../src/api/models/contact.model.js');
 
 
-describe("Create Contact", function() {
+describe("Contact - create", function() {
   beforeEach(async () => {
     await Contact.deleteMany();
   })
@@ -50,3 +50,17 @@ describe("Create Contact", function() {
     expect(await Contact.countDocuments()).to.equal(1);
   })
 });
+
+describe("Contact - findAll", function() {
+  beforeEach(async () => {
+    await new Contact({name: "Randy", surname: "Marsh",
+                       phones: ["111111", "222222"],
+                       emails: ["randy1@example.com", "randy2@example.com"]});
+    await new Contact({name: "Eric", surname: "Cartman"});
+  });
+
+  afterEach(async () => {
+    await Contact.deleteMany();
+  })
+})
+
